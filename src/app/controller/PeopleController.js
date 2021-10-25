@@ -7,8 +7,23 @@ class PeopleController {
     }
 
     async list(req, res){
-        const result = await PeopleService.list(req.body);
-        return res.status(201).json(result);
+        const result = await PeopleService.list();
+        return res.status(200).json(result);
+    }
+
+    async listById(req, res){
+        const result = await PeopleService.listById(req.params.id);
+        return res.status(200).json(result);
+    }
+
+    async update(req, res){
+        const result = await PeopleService.updateById(req.params.id, req.body);
+        return res.status(204).json(result);
+    }
+
+    async delete(req, res){
+        const result = await PeopleService.deleteById(req.params.id);
+        return res.status(202).json(result);
     }
 }
 

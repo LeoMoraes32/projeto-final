@@ -1,9 +1,9 @@
-const PeopleRepository = require('../repository/PeopleRepository');
+const CarRepository = require('../repository/CarRepository');
 
-class PeopleService{
+class CarService{
     async create(payload){
         try{
-            const result = await PeopleRepository.create(payload);
+            const result = await CarRepository.create(payload);
             return result;
         } catch(error){
             return error;
@@ -11,7 +11,7 @@ class PeopleService{
     }
     async list(){
         try{
-            const result = await PeopleRepository.list();
+            const result = await CarRepository.list();
             return result;
         } catch(error){
             return error;
@@ -20,7 +20,7 @@ class PeopleService{
 
     async listById(payload){
         try{
-            const result = await PeopleRepository.listById(payload);
+            const result = await CarRepository.listById(payload);
             return result;
         } catch(error){
             return error;
@@ -29,7 +29,7 @@ class PeopleService{
 
     async updateById(payload, body){
         try{
-            const result = await PeopleRepository.updateById(payload, body);
+            const result = await CarRepository.updateById(payload, body);
             return result;
         } catch(error){
             return error;
@@ -38,7 +38,7 @@ class PeopleService{
 
     async deleteById(payload){
         try{
-            const result = await PeopleRepository.deleteById(payload);
+            const result = await CarRepository.deleteById(payload);
             return result;
         } catch(error){
             return error;
@@ -46,4 +46,4 @@ class PeopleService{
     }
 }
 
-module.exports = new PeopleService();
+module.exports = new CarService();
