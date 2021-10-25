@@ -1,13 +1,13 @@
 const express = require('express');
 const router = require('./routes');
+require('./infra/database/mongo');
 
 class App{
 
     constructor() {
         this.server = express();
         this.middlewares();
-        this.route();
-    
+        this.routes();
     }
 
     middlewares() {
@@ -20,4 +20,4 @@ class App{
 
 }
 
-module.exports = new App();
+module.exports = new App().server;
