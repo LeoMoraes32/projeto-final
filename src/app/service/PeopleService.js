@@ -4,6 +4,12 @@ class PeopleService{
     async create(payload){
         try{
             const result = await PeopleRepository.create(payload);
+
+            console.log(payload.data_nascimento);
+            const now = new Date();
+            const birth = new Date(await schema.validate(req.body).value.data_nascimento);
+            console.log(birth);
+            
             return (result);
         } catch(error){
             return error;

@@ -13,7 +13,7 @@ class CarRepository {
     }
 
     async listByParams(payload){
-        return CarSchema.find(payload);
+        return CarSchema.findOne({payload});
     }
 
     async updateById(payload, body){

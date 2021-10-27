@@ -6,14 +6,17 @@ class CarController {
         return res.status(201).json(result);        
     }
 
-    async list(req, res){
-        const result = await CarService.list();
-        return res.status(200).json(result);
-    }
+  
 
     async listByParams(req, res){
-        const result = await CarService.listByParams(req.query);
-        return res.status(200).json(result);
+        
+        if (Object.keys(req.query).length > 0){
+            const result = await CarService.listByParams(req.query);
+            return res.status(200).json(result);
+        }else {
+            const result = await CarService.list();
+            return res.status(200).json(result);
+        }
     }
 
     async listById(req, res){
