@@ -1,15 +1,16 @@
 const PeopleRepository = require('../repository/PeopleRepository');
 
+function cpfCorrection(payload){
+    let newCpf = payload.cpf.replace(".", "").replace(".", "").replace("-", "")
+    payload.cpf = newCpf;
+}
+
 class PeopleService{
     async create(payload){
+        cpfCorrection(payload);
         try{
             const result = await PeopleRepository.create(payload);
 
-            console.log(payload.data_nascimento);
-            const now = new Date();
-            const birth = new Date(await schema.validate(req.body).value.data_nascimento);
-            console.log(birth);
-            
             return (result);
         } catch(error){
             return error;
