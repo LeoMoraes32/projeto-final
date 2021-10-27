@@ -3,6 +3,7 @@ const PeopleSchema = require('../schema/PeopleSchema');
 class PeopleRepository {
     async create(payload){
         return PeopleSchema.create(payload);
+      
     }
     async list(){
         return PeopleSchema.find();

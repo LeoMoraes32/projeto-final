@@ -18,6 +18,15 @@ class CarService{
         }
     }
 
+    async listByParams(payload){
+        try{
+            const result = await CarRepository.listByParams(payload);
+            return result
+        } catch(error){
+            return error;
+        }
+    }
+
     async listById(payload){
         try{
             const result = await CarRepository.listById(payload);

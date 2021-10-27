@@ -4,7 +4,7 @@ class PeopleService{
     async create(payload){
         try{
             const result = await PeopleRepository.create(payload);
-            return result;
+            return (result);
         } catch(error){
             return error;
         }

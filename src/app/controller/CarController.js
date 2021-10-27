@@ -11,6 +11,11 @@ class CarController {
         return res.status(200).json(result);
     }
 
+    async listByParams(req, res){
+        const result = await CarService.listByParams(req.query);
+        return res.status(200).json(result);
+    }
+
     async listById(req, res){
         const result = await CarService.listById(req.params.id);
         return res.status(200).json(result);

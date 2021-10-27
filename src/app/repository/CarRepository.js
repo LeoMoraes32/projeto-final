@@ -12,6 +12,10 @@ class CarRepository {
         return CarSchema.findById(payload);
     }
 
+    async listByParams(payload){
+        return CarSchema.find(payload);
+    }
+
     async updateById(payload, body){
         return CarSchema.findByIdAndUpdate(payload, body, {
             new: true,
