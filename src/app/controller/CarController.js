@@ -6,8 +6,6 @@ class CarController {
         return res.status(201).json(result);        
     }
 
-  
-
     async listByParams(req, res){
         
         if (Object.keys(req.query).length > 0){
