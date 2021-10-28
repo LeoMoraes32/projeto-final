@@ -4,16 +4,12 @@ class CarRepository {
     async create(payload){
         return CarSchema.create(payload);
     }
-    async list(){
-        return CarSchema.find();
+    async list($payload){
+        return CarSchema.find($payload);
     }
 
     async listById(payload){
         return CarSchema.findById(payload);
-    }
-
-    async listByParams(payload){
-        return CarSchema.findOne({payload});
     }
 
     async updateById(payload, body){

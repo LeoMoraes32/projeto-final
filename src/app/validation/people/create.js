@@ -1,10 +1,5 @@
 const Joi = require('joi');
 
-//let currentDate = new Date();
-//console.log(currentDate);
-//let newDate = currentDate - 18;
-//console.log(newDate);
-
 module.exports = async (req, res, next) => {
     try{
         const schema = Joi.object({

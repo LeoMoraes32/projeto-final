@@ -4,7 +4,7 @@ const patchValidation = require('../app/validation/car/patch');
 
 module.exports = (server, routes, prefix = '/car') => {
     routes.post('/', createValidation, CarController.create);
-    routes.get('/', CarController.listByParams);
+    routes.get('/', CarController.list);
     routes.get('/:id', CarController.listById);
     routes.patch('/:id',patchValidation, CarController.update);
     routes.delete('/:id', CarController.delete);
