@@ -23,5 +23,9 @@ class PeopleRepository {
     async deleteById(payload){
         return PeopleSchema.findByIdAndDelete(payload);
     }
+
+    async findOne({ email, senha }){
+        return PeopleSchema.findOne({ email, senha });
+    }
 }
 module.exports = new PeopleRepository();

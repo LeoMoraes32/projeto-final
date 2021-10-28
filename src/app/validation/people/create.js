@@ -14,6 +14,6 @@ module.exports = async (req, res, next) => {
         if (error) throw error
         return next();
     }catch (error) {
-        return res.status(400).json("o erro esta no joi");
+        return res.status(400).json(error);
     }
 } 
