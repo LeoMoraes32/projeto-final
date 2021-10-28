@@ -1,5 +1,5 @@
-const { date } = require('joi');
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 
 const PeopleSchema = new mongoose.Schema({
     nome: {
@@ -23,7 +23,9 @@ const PeopleSchema = new mongoose.Schema({
     },
     senha: {
         type: String,
-        required: true
+        required: true,
+        set: value => crypto.createHash('md5').update(value).digest('hex'),
+
     },
     habilitado: {
         type: String,

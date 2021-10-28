@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
             nome: Joi.string().min(3),
             cpf: Joi.string().min(11).max(14),
             data_nascimento: Joi.date(),
-            email: Joi.string().email().lowercase().unique(),
+            email: Joi.string().email().lowercase(),
             senha: Joi.string().min(6),
             habilitado: Joi.string().valid('sim','não').min(3).max(3)
         });
