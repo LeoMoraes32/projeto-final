@@ -27,9 +27,9 @@ class CarService{
         }
     }
 
-    async updateById(payload, body){
+    async updateById(id, body){
         try{
-            const result = await CarRepository.updateById(payload, body);
+            const result = await CarRepository.updateById(id, body);
             return result;
         } catch(error){
             return error;

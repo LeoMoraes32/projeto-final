@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
             modelo: Joi.string(),
             cor: Joi.string(),
             ano: Joi.number().less(2022).greater(1950),
-            acessorios: Joi.array().items({descricao:Joi.string().required()}),
+            acessorios: Joi.array().min(1).unique().items({descricao:Joi.string()}),
             quantidadePassageiros: Joi.number()
         });
         const { error } = await schema.validate(req.body, { abortEarly: false });

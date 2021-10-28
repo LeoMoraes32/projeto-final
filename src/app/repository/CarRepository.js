@@ -5,15 +5,16 @@ class CarRepository {
         return CarSchema.create(payload);
     }
     async list($payload){
-        return CarSchema.find($payload);
+        const { page = 1, limit = 10 } = $payload;
+        return CarSchema.find($payload).limit(limit * 1).skip((page - 1) * limit);
     }
 
     async listById(payload){
         return CarSchema.findById(payload);
     }
 
-    async updateById(payload, body){
-        return CarSchema.findByIdAndUpdate(payload, body, {
+    async updateById(id, body){
+        return CarSchema.findByIdAndUpdate(id, body, {
             new: true,
             runValidators: true
         });

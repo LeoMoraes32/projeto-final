@@ -7,8 +7,8 @@ class PeopleController {
     }
 
     async list(req, res){
-        const result = await PeopleService.list();
-        return res.status(200).json(result);
+        const people = await PeopleService.list();
+        return res.status(200).json({ total:people.length, people});
     }
 
     async listById(req, res){

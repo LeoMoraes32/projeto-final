@@ -7,8 +7,8 @@ class CarController {
     }
 
     async list(req, res){
-        const result = await CarService.list(req.query);
-        return res.status(200).json(result);
+        const cars = await CarService.list(req.query);
+        return res.status(200).json({ total:cars.length, cars});
     }
 
     async listById(req, res){
