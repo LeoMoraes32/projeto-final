@@ -1,4 +1,5 @@
 const PeopleRepository = require('../repository/PeopleRepository');
+const moment = require('moment');
 
 function cpfCorrection(payload){
     let newCpf = payload.cpf.replace(".", "").replace(".", "").replace("-", "")
@@ -9,16 +10,35 @@ class PeopleService{
     async create(payload){
         cpfCorrection(payload);
         try{
-            const result = await PeopleRepository.create(payload);
+            const enterData = moment(payload.data_nascimento, 'DD/MM/YYYY').format('YYYY/MM/DD');
+            const data = (moment().diff(payload.data_nascimento, 'years'));
 
-            return (result);
+            if(data < 18){
+                throw (error, false);
+            } 
+
+            const result = {enterData, ...payload};
+            const results = await PeopleRepository.create(result);
+            
+            return (results);
+        } catch(error){
+            if(false){
+                return false
+            }
+            return error;
+        }
+    }
+    async list(perPage, page){
+        try{
+            const result = await PeopleRepository.list(perPage, page);
+            return result;
         } catch(error){
             return error;
         }
     }
-    async list(){
+    async listByParams(payload){
         try{
-            const result = await PeopleRepository.list();
+            const result = await PeopleRepository.listByParams(payload);
             return result;
         } catch(error){
             return error;

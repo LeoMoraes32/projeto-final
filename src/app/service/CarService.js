@@ -9,9 +9,18 @@ class CarService{
             return error;
         }
     }
-    async list(payload){
+    async list(perPage, page){
         try{
-            const result = await CarRepository.list(payload);
+            const result = await CarRepository.list(perPage, page);
+            return result;
+        } catch(error){
+            return error;
+        }
+    }
+
+    async listByParams(payload){
+        try{
+            const result = await CarRepository.listByParams(payload);
             return result;
         } catch(error){
             return error;

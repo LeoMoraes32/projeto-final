@@ -5,8 +5,17 @@ class PeopleRepository {
         return PeopleSchema.create(payload);
       
     }
-    async list(){
-        return PeopleSchema.find();
+    async list(perPage, page){
+    
+        const options = {
+            page: parseInt(page, 10) || 1,
+            limit: parseInt(perPage, 10) || 10,
+        };
+        return PeopleSchema.paginate({}, options);
+    }
+    
+    async listByParams(payload){
+        return PeopleSchema.find(payload);
     }
 
     async listById(payload){

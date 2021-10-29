@@ -4,9 +4,17 @@ class CarRepository {
     async create(payload){
         return CarSchema.create(payload);
     }
-    async list($payload){
-        const { page = 1, limit = 10 } = $payload;
-        return CarSchema.find($payload).limit(limit * 1).skip((page - 1) * limit);
+    async list(perPage, page){
+
+        const options = {
+            page: parseInt(page, 10) || 1,
+            limit: parseInt(perPage, 10) || 10,
+        };
+        return CarSchema.paginate({}, options);
+    }
+
+    async listByParams(payload){
+        return CarSchema.find(payload);
     }
 
     async listById(payload){
