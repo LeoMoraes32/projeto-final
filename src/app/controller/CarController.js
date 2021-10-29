@@ -1,5 +1,4 @@
 const CarService = require('../service/CarService');
-const PeopleService = require('../service/PeopleService');
 
 class CarController {
     async create(req, res){

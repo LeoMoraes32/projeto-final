@@ -1,4 +1,3 @@
-const { query } = require('express');
 const PeopleSchema = require('../schema/PeopleSchema');
 
 class PeopleRepository {
@@ -6,17 +5,12 @@ class PeopleRepository {
         return PeopleSchema.create(payload);
       
     }
-    async list(perPage, page, query){
-    
-        const options = {
-            page: parseInt(page, 10) || 1,
-            limit: parseInt(perPage, 10) || 10,
-        };
-        return PeopleSchema.paginate(query, options);
-    }
-    
-    async listByParams(payload){
-        return PeopleSchema.find(payload);
+    async list(payload, offset, limit){
+        
+        offset = parseInt(offset) || 0;
+        limit = parseInt(limit) || 100;
+
+        return PeopleSchema.paginate(payload, {offset, limit});
     }
 
     async listById(payload){

@@ -1,44 +1,24 @@
 const PeopleRepository = require('../repository/PeopleRepository');
 const moment = require('moment');
 
-function cpfCorrection(payload){
-    let newCpf = payload.cpf.replace(".", "").replace(".", "").replace("-", "")
-    payload.cpf = newCpf;
-}
-
 class PeopleService{
     async create(payload){
-        cpfCorrection(payload);
         try{
-            const enterData = moment(payload.data_nascimento, 'DD/MM/YYYY').format('YYYY/MM/DD');
-            const data = (moment().diff(payload.data_nascimento, 'years'));
-
-            if(data < 18){
-                throw (error, false);
+            payload.data_nascimento = moment(payload.data_nascimento, 'DD/MM/YYYY').format('MM/DD/YYYY');
+            const age = moment().diff(payload.data_nascimento, 'years');
+            if(age < 18){
+                throw error;
             } 
 
-            const result = {enterData, ...payload};
-            const results = await PeopleRepository.create(result);
-            
-            return (results);
-        } catch(error){
-            if(false){
-                return false
-            }
-            return error;
-        }
-    }
-    async list({page, perPage, ...query}){
-        try{
-            const result = await PeopleRepository.list(page, perPage, query);
+            const result = await PeopleRepository.create(payload);
             return result;
         } catch(error){
             return error;
         }
     }
-    async listByParams(payload){
+    async list({offset, limit, ...payload}){
         try{
-            const result = await PeopleRepository.listByParams(payload);
+            const result = await PeopleRepository.list(payload, offset, limit);
             return result;
         } catch(error){
             return error;

@@ -11,9 +11,9 @@ class CarService{
         }
     }
 
-    async list({page, perPage, ...query}){
+    async list({offset, limit, ...payload}){
         try{
-            const result = await CarRepository.list(page, perPage, query);
+            const result = await CarRepository.list(payload, offset, limit);
             return result;
         } catch(error){
             return error;

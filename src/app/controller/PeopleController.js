@@ -1,13 +1,9 @@
 const PeopleService = require('../service/PeopleService');
-const PeopleSchema = require('../schema/PeopleSchema');
 
 class PeopleController {
     async create(req, res){
         const result = await PeopleService.create(req.body);
-        if(!result){
-            return res.status(403).json('Age is under 18');
-        }
-        return res.status(201).json(result);        
+        return res.status(201).json(result);
     }
 
     async list(req, res){

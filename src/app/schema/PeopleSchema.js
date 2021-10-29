@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
-const mongoosePaginate = require('mongoose-paginate');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PeopleSchema = new mongoose.Schema({
     nome: {
@@ -14,7 +13,7 @@ const PeopleSchema = new mongoose.Schema({
         unique: true
     },
     data_nascimento: {
-        type: Date,
+        type: String,
         required: true
     },
     email: {
@@ -28,6 +27,7 @@ const PeopleSchema = new mongoose.Schema({
         type: String,
         required: true,
         set: value => crypto.createHash('md5').update(value).digest('hex'),
+        select: false
 
     },
     habilitado: {
@@ -35,9 +35,12 @@ const PeopleSchema = new mongoose.Schema({
         required: true,
         enum: ['sim','não']
     }
-});
+},
+{
+    versionKey: false
+}
+);
 
-PeopleSchema.plugin(uniqueValidator);
 PeopleSchema.plugin(mongoosePaginate);
 
 const People = mongoose.model('People', PeopleSchema);

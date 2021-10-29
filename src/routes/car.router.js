@@ -7,7 +7,7 @@ module.exports = (server, routes, prefix = '/car') => {
     routes.post('/', createValidation, CarController.create);
     routes.get('/', CarController.list);
     routes.get('/:id',idValidation, CarController.listById);
-    routes.put('/:id',idValidation, CarController.update);
+    routes.put('/:id',idValidation, createValidation, CarController.update);
     routes.patch('/:id',idValidation, patchValidation, CarController.update);
     routes.delete('/:id',idValidation, CarController.delete);
     server.use(prefix, routes);

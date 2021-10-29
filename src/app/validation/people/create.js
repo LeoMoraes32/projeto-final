@@ -1,11 +1,11 @@
-const Joi = require('joi');
+const Joi = require('joi').extend(require('@joi/date'));
 
 module.exports = async (req, res, next) => {
     try{
         const schema = Joi.object({
             nome: Joi.string().min(3).required(),
-            cpf: Joi.string().min(11).max(14).required(),
-            data_nascimento: Joi.date().required(),
+            cpf: Joi.string().min(11).max(14).regex(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/).required(),
+            data_nascimento: Joi.date().format('DD/MM/YYY').required(),
             email: Joi.string().email().lowercase().required(),
             senha: Joi.string().min(6).required(),
             habilitado: Joi.string().valid('sim','não').min(3).max(3).required()
