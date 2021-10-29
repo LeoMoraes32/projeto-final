@@ -4,17 +4,14 @@ class CarRepository {
     async create(payload){
         return CarSchema.create(payload);
     }
-    async list(perPage, page){
+    async list(perPage, page, query){
 
         const options = {
             page: parseInt(page, 10) || 1,
             limit: parseInt(perPage, 10) || 10,
         };
-        return CarSchema.paginate({}, options);
-    }
 
-    async listByParams(payload){
-        return CarSchema.find(payload);
+        return CarSchema.paginate(query, options);
     }
 
     async listById(payload){

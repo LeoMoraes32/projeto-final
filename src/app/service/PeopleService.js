@@ -28,9 +28,9 @@ class PeopleService{
             return error;
         }
     }
-    async list(perPage, page){
+    async list({page, perPage, ...query}){
         try{
-            const result = await PeopleRepository.list(perPage, page);
+            const result = await PeopleRepository.list(page, perPage, query);
             return result;
         } catch(error){
             return error;

@@ -1,3 +1,4 @@
+const { query } = require('express');
 const PeopleSchema = require('../schema/PeopleSchema');
 
 class PeopleRepository {
@@ -5,13 +6,13 @@ class PeopleRepository {
         return PeopleSchema.create(payload);
       
     }
-    async list(perPage, page){
+    async list(perPage, page, query){
     
         const options = {
             page: parseInt(page, 10) || 1,
             limit: parseInt(perPage, 10) || 10,
         };
-        return PeopleSchema.paginate({}, options);
+        return PeopleSchema.paginate(query, options);
     }
     
     async listByParams(payload){

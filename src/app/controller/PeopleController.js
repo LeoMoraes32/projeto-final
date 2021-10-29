@@ -11,16 +11,8 @@ class PeopleController {
     }
 
     async list(req, res){
-        req.query.perPage = parseInt(req.query.perPage);
-        req.query.page = parseInt(req.query.page);
-
-        if (Object.keys(req.query).length == 2) {
-            const people = await PeopleService.list(req.query);
-            return res.status(200).json({ total:people.length, people});
-        } else {
-            const people = await PeopleService.listByParams(req.query);
-            return res.status(200).json({ total:people.length, people});
-        }
+        const people = await PeopleService.list(req.query);
+        return res.status(200).json(people);
     }
 
     async listById(req, res){

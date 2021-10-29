@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const mongoosePaginate = require('mongoose-paginate');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const PeopleSchema = new mongoose.Schema({
     nome: {
@@ -9,7 +10,8 @@ const PeopleSchema = new mongoose.Schema({
     },
     cpf: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     data_nascimento: {
         type: Date,
@@ -35,6 +37,7 @@ const PeopleSchema = new mongoose.Schema({
     }
 });
 
+PeopleSchema.plugin(uniqueValidator);
 PeopleSchema.plugin(mongoosePaginate);
 
 const People = mongoose.model('People', PeopleSchema);

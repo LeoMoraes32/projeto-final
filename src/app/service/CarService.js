@@ -1,3 +1,4 @@
+const { query } = require('express');
 const CarRepository = require('../repository/CarRepository');
 
 class CarService{
@@ -9,18 +10,10 @@ class CarService{
             return error;
         }
     }
-    async list(perPage, page){
-        try{
-            const result = await CarRepository.list(perPage, page);
-            return result;
-        } catch(error){
-            return error;
-        }
-    }
 
-    async listByParams(payload){
+    async list({page, perPage, ...query}){
         try{
-            const result = await CarRepository.listByParams(payload);
+            const result = await CarRepository.list(page, perPage, query);
             return result;
         } catch(error){
             return error;
