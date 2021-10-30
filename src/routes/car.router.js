@@ -3,7 +3,7 @@ const createValidation = require('../app/validation/car/create');
 const patchValidation = require('../app/validation/car/patch');
 const idValidation = require('../app/validation/car/idValidation');
 
-module.exports = (server, routes, prefix = '/car') => {
+module.exports = (server, routes, prefix = '/api/v1/car') => {
     routes.post('/', createValidation, CarController.create);
     routes.get('/', CarController.list);
     routes.get('/:id',idValidation, CarController.listById);

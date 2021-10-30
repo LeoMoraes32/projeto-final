@@ -10,7 +10,7 @@ function generatedToken(params = {} ){
     });
 }
 
-module.exports = (server, routes, prefix = '/authenticate') => {
+module.exports = (server, routes, prefix = '/api/v1/authenticate') => {
     routes.post('/', async (req, res) => {
         //console.log(req.body);
 

@@ -4,7 +4,7 @@ const patchValidation = require('../app/validation/people/patch');
 const idValidation = require('../app/validation/people/idValidation');
 
 
-module.exports = (server, routes, prefix = '/people') => {
+module.exports = (server, routes, prefix = '/api/v1/people') => {
     routes.post('/', createValidation, PeopleController.create);
     routes.get('/', PeopleController.list);
     routes.get('/:id',idValidation, PeopleController.listById);
