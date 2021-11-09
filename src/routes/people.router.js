@@ -7,10 +7,10 @@ const idValidation = require('../app/validation/people/idValidation');
 module.exports = (server, routes, prefix = '/api/v1/people') => {
     routes.post('/', createValidation, PeopleController.create);
     routes.get('/', PeopleController.list);
-    routes.get('/:id',idValidation, PeopleController.listById);
-    routes.put('/:id',idValidation, createValidation, PeopleController.update);
-    routes.patch('/:id',idValidation, patchValidation, PeopleController.update);
-    routes.delete('/:id',idValidation, PeopleController.delete);
+    routes.get('/:id', idValidation, PeopleController.listById);
+    routes.put('/:id', idValidation, createValidation, PeopleController.update);
+    routes.patch('/:id', idValidation, patchValidation, PeopleController.update);
+    routes.delete('/:id', idValidation, PeopleController.delete);
     server.use(prefix, routes);
 }
 

@@ -3,22 +3,20 @@ const moment = require('moment');
 
 class PeopleService{
     async create(payload){
-        try{
-            payload.data_nascimento = moment(payload.data_nascimento, 'DD/MM/YYYY').format('MM/DD/YYYY');
-            const age = moment().diff(payload.data_nascimento, 'years');
-            if(age < 18){
-                throw error;
-            } 
-
-            const result = await PeopleRepository.create(payload);
-            return result;
-        } catch(error){
-            return error;
+        //const dateRight = moment(payload.data_nascimento, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        //const age = moment().diff(dateRight, 'years');
+        payload.data_nascimento = moment(payload.data_nascimento, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        const age = moment().diff(payload.data_nascimento, 'years');
+        if(age < 18){
+            throw Error('Age under 18');
         }
+        
+        const result = await PeopleRepository.create(payload);
+        return result;
     }
-    async list({offset, limit, ...payload}){
+    async list(payload){
         try{
-            const result = await PeopleRepository.list(payload, offset, limit);
+            const result = await PeopleRepository.list(payload);
             return result;
         } catch(error){
             return error;
@@ -46,6 +44,7 @@ class PeopleService{
     async deleteById(payload){
         try{
             const result = await PeopleRepository.deleteById(payload);
+            if(!result) throw Error("Not found");
             return result;
         } catch(error){
             return error;

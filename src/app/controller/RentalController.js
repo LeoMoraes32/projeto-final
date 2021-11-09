@@ -1,11 +1,11 @@
-const { paginateSerialize, serialize } = require('../serialize/PeopleSerialize');
+const { paginateSerialize, serialize } = require('../serialize/RentalSerialize');
 
-const PeopleService = require('../service/PeopleService');
+const RentalService = require('../service/RentalService');
 
-class PeopleController {
+class RentalController {
     async create(req, res){
         try{
-            const result = await PeopleService.create(req.body);
+            const result = await RentalService.create(req.body);
             return res.status(201).json(serialize(result));
 
         } catch(error){
@@ -15,7 +15,7 @@ class PeopleController {
 
     async list(req, res){
         try{
-            const result = await PeopleService.list(req.query);
+            const result = await RentalService.list(req.query);
             return res.status(200).json(paginateSerialize(result));
         } catch(error){
             return res.status(400).json({ description: error.path, name: error.message });
@@ -24,7 +24,7 @@ class PeopleController {
 
     async listById(req, res){
         try{
-            const result = await PeopleService.listById(req.params.id);
+            const result = await RentalService.listById(req.params.id);
             return res.status(200).json(serialize(result));
         } catch(error){
             return res.status(400).json({ description: error.path, name: error.message });
@@ -33,7 +33,7 @@ class PeopleController {
 
     async update(req, res){
         try{
-            const result = await PeopleService.updateById(req.params.id, req.body);
+            const result = await RentalService.updateById(req.params.id, req.body);
             return res.status(200).json(serialize(result));
         } catch(error){
             return res.status(400).json({ description: error.path, name: error.message });
@@ -42,12 +42,13 @@ class PeopleController {
 
     async delete(req, res){
         try{
-            const result = await PeopleService.deleteById(req.params.id);
+            const result = await RentalService.deleteById(req.params.id);
             return res.status(202).json({});
+
         }catch(error){
             return res.status(400).json({ description: error.path, name: error.message });
         }
     }
 }
 
-module.exports = new PeopleController();
+module.exports = new RentalController();

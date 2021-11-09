@@ -1,0 +1,77 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title": "API locadora de carros - Compassolisa",
+        "description": "API que cria os registros de carros, usuários e a autenticação.",
+        "termsOfService": "http://localhost:3000/terms",
+        "contact": {
+            "email": "leonardo32moraes@hotmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api/v1",
+            "description": "API de test"
+        }
+    ],
+    "paths": {
+        "/people":{
+            "post":{
+                "summary": "Cadastrar uma nova pessoa",
+                "description": "Essa rota será responsável por cadastrar uma pessoa",
+                "tags":["people"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/people"
+                            },
+                            "examples": {
+                                "people": {
+                                    "value": {
+                                        "nome": "Leonardo Moraes",
+                                        "cpf": "034.798.320-00",
+                                        "data_nascimento": "15/12/1994",
+                                        "email": "leonardo32moraes@hotmail.com",
+                                        "senha": "123456789",
+                                        "habilitado": "sim"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "people":{
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
+                    },
+                    "data_nascimento": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "senha": {
+                        "type": "string"
+                    },
+                    "habilitado": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+
+}

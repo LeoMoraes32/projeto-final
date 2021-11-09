@@ -11,9 +11,9 @@ class CarService{
         }
     }
 
-    async list({offset, limit, ...payload}){
+    async list(payload){
         try{
-            const result = await CarRepository.list(payload, offset, limit);
+            const result = await CarRepository.list(payload);
             return result;
         } catch(error){
             return error;
@@ -38,9 +38,15 @@ class CarService{
         }
     }
 
+    async patch(idCar, idAcessorios, payload){
+        const result = await CarRepository.patch(idCar, idAcessorios, payload);
+        return result;
+    }
+
     async deleteById(payload){
         try{
             const result = await CarRepository.deleteById(payload);
+            if(!result) throw Error("Not found");
             return result;
         } catch(error){
             return error;
