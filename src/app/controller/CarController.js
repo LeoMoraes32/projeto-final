@@ -38,10 +38,9 @@ class CarController {
         }
     }
 
-    async patch(req, res){
+    async patchAcessory(req, res){
         try{
-            const { idCar, idAcessorios} = req.params;
-            const result = await CarService.patch(idCar, idAcessorios, req.body);
+            const result = await CarService.patchAcessory(req.params, req.body);
             return res.status(200).json(serialize(result));
         }catch (error){
             return res.status(400).json({ description: error.path, name: error.message });

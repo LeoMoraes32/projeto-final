@@ -38,8 +38,11 @@ class CarService{
         }
     }
 
-    async patch(idCar, idAcessorios, payload){
-        const result = await CarRepository.patch(idCar, idAcessorios, payload);
+    async patchAcessory({id, idAcessory}, {descricao}){
+        const car = await CarRepository.listById(id);
+        if(!car) throw new Error;
+
+        const result = await CarRepository.patchAcessory(idAcessory, descricao);
         return result;
     }
 

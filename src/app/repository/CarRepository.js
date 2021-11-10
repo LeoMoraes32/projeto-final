@@ -22,31 +22,19 @@ class CarRepository {
         });
     }
 
-    async patch(idCar, idAcessorios, payload){
-        const result = await CarSchema.updateOne
-        (
+    async patchAcessory(idAcessory, descricao){
+        const result = await CarSchema.findOneAndUpdate(
+            { 'acessorios._id': idAcessory },
             {
-                "acessorios._id":idAcessorios
-            },
-            {
-                "$set": {
-                    "acessorios.$.descricao":toString(payload)
+                $set: {
+                    'acessorios.$.descricao': descricao
                 }
-            }
+            },
+            { new: true, safe: true, upsert: true }
         )
-
-
-        //const Acessorios = [];
-        //result.acessorios.forEach((item) => {
-          //  if(item.idCar === result.id) Acessorios.push(item);
-            //if(item.idAcessorios === result.id) {
-              //  Acessorios.push(payload);
-                //console.log("foi!");
-           // }
-       // });
         return result;
     }
-
+      
     async deleteById(payload){
         return await CarSchema.findByIdAndDelete(payload);
     }
