@@ -11,7 +11,6 @@ module.exports = server => {
         car(server, new Router());
         authenticate(server, new Router());
         rental(server, new Router());
-        test(server, new Router());
         next();
     });
 }
