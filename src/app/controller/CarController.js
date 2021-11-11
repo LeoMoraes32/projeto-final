@@ -25,7 +25,7 @@ class CarController {
       const result = await CarService.getById(req.params.id);
       return res.status(200).json(serialize(result));
     } catch (error) {
-      return res.status(400).json({ description: error.path, name: error.message });
+      return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }
 
@@ -34,7 +34,7 @@ class CarController {
       const result = await CarService.updateById(req.params.id, req.body);
       return res.status(200).json(serialize(result));
     } catch (error) {
-      return res.status(400).json({ description: error.path, name: error.message });
+      return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }
 
@@ -43,7 +43,7 @@ class CarController {
       const result = await CarService.patchAcessory(req.params, req.body);
       return res.status(200).json(serialize(result));
     } catch (error) {
-      return res.status(400).json({ description: error.path, name: error.message });
+      return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }
 
@@ -52,7 +52,7 @@ class CarController {
       await CarService.deleteById(req.params.id);
       return res.status(202).json({});
     } catch (error) {
-      return res.status(400).json({ description: error.path, name: error.message });
+      return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }
 }

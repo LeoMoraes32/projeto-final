@@ -29,7 +29,7 @@ class CarService {
 
   async patchAcessory({ id, idAcessory }, { descricao }) {
     const car = await CarRepository.listById(id);
-    if (!car) throw new Error();
+    if (!car) throw new IdNotFoundCar(id);
 
     const result = await CarRepository.patchAcessory(idAcessory, descricao);
     return result;
