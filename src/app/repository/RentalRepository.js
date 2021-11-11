@@ -26,7 +26,7 @@ class RentalRepository {
     });
   }
 
-  async listById(payload) {
+  async getById(payload) {
     return RentalSchema.findById(payload);
   }
 

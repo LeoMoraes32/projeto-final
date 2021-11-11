@@ -1,7 +1,12 @@
 const RentalRepository = require('../repository/RentalRepository');
+const UniqueCnpj = require('../errors/rentalError/UniqueCnpj');
 
 class RentalService {
   async create(payload) {
+    const cnpj = await RentalRepository.list({ cnpj: payload.cnpj });
+    if (!cnpj) {
+      throw new UniqueCnpj(cnpj);
+    }
     const result = await RentalRepository.create(payload);
     return result;
   }
@@ -15,9 +20,9 @@ class RentalService {
     }
   }
 
-  async listById(payload) {
+  async getById(payload) {
     try {
-      const result = await RentalRepository.listById(payload);
+      const result = await RentalRepository.getById(payload);
       return result;
     } catch (error) {
       return error;
