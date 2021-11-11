@@ -6,13 +6,14 @@ class CarRepository {
   }
 
   async list(payload) {
-    return CarSchema.paginate(payload, {
-      page: payload.page || 1,
-      limit: 100
-    });
+    const { page = 1, limit = 100, ...query } = payload;
+    return CarSchema.paginate(
+      { ...query },
+      { limit: Number(limit), page: Number(page), skip: (Number(page) - 1) * Number(limit) }
+    );
   }
 
-  async listById(payload) {
+  async getById(payload) {
     return CarSchema.findById(payload);
   }
 

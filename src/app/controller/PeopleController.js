@@ -8,7 +8,6 @@ class PeopleController {
       const result = await PeopleService.create(req.body);
       return res.status(201).json(serialize(result));
     } catch (error) {
-      console.log(error.path);
       return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }

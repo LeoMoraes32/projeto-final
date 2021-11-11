@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const CarRepository = require('../../repository/CarRepository');
 
 module.exports = async (req, res, next) => {
   try {
@@ -12,18 +11,8 @@ module.exports = async (req, res, next) => {
     });
 
     const { error } = await schema.validate(req.params, { abortEarly: false });
+
     if (error) throw error;
-
-    const { id } = req.params;
-
-    const car = await CarRepository.listById(id);
-
-    if (car) {
-      req.car = car;
-      next();
-    } else {
-      return res.status(404).json({ message: 'Car ID not exist' });
-    }
     return next();
   } catch (error) {
     const erros = [];

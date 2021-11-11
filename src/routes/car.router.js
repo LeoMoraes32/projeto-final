@@ -6,8 +6,8 @@ const login = require('../app/middleware/auth');
 
 module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.post('/', createValidation, CarController.create);
-  routes.get('/', login, patchValidation, CarController.list);
-  routes.get('/:id', idValidation, CarController.listById);
+  routes.get('/', patchValidation, CarController.list);
+  routes.get('/:id', idValidation, CarController.getById);
   routes.put('/:id', idValidation, createValidation, CarController.update);
   routes.patch('/:id', idValidation, patchValidation, CarController.update);
   routes.patch('/:id/acessorios/:idAcessory', CarController.patchAcessory);

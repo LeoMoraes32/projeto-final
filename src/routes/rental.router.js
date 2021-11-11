@@ -6,7 +6,7 @@ const createValidation = require('../app/validation/rental/create');
 module.exports = (server, routes, prefix = '/api/v1/rental') => {
   routes.post('/', createValidation, RentalController.create);
   routes.get('/', RentalController.list);
-  routes.get('/:id', RentalController.listById);
+  routes.get('/:id', RentalController.getById);
   routes.put('/:id', createValidation, RentalController.update);
   routes.patch('/:id', RentalController.update);
   routes.delete('/:id', RentalController.delete);

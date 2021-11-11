@@ -1,40 +1,30 @@
 const CarRepository = require('../repository/CarRepository');
 
+const IdNotFoundCar = require('../errors/peopleError/IdNotFound');
+
 class CarService {
   async create(payload) {
-    try {
-      const result = await CarRepository.create(payload);
-      return result;
-    } catch (error) {
-      return error;
-    }
+    const result = await CarRepository.create(payload);
+    if (!result) throw Error();
+    return result;
   }
 
   async list(payload) {
-    try {
-      const result = await CarRepository.list(payload);
-      return result;
-    } catch (error) {
-      return error;
-    }
+    const result = await CarRepository.list(payload);
+    if (!result) throw new Error();
+    return result;
   }
 
-  async listById(payload) {
-    try {
-      const result = await CarRepository.listById(payload);
-      return result;
-    } catch (error) {
-      return error;
-    }
+  async getById(payload) {
+    const result = await CarRepository.getById(payload);
+    if (!result) throw new IdNotFoundCar(payload);
+    return result;
   }
 
   async updateById(id, body) {
-    try {
-      const result = await CarRepository.updateById(id, body);
-      return result;
-    } catch (error) {
-      return error;
-    }
+    const result = await CarRepository.updateById(id, body);
+    if (!result) throw new IdNotFoundCar(id);
+    return result;
   }
 
   async patchAcessory({ id, idAcessory }, { descricao }) {
@@ -46,13 +36,9 @@ class CarService {
   }
 
   async deleteById(payload) {
-    try {
-      const result = await CarRepository.deleteById(payload);
-      if (!result) throw Error('Not found');
-      return result;
-    } catch (error) {
-      return error;
-    }
+    const result = await CarRepository.deleteById(payload);
+    if (!result) throw new IdNotFoundCar(payload);
+    return result;
   }
 }
 

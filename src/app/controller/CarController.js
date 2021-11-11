@@ -20,9 +20,9 @@ class CarController {
     }
   }
 
-  async listById(req, res) {
+  async getById(req, res) {
     try {
-      const result = await CarService.listById(req.params.id);
+      const result = await CarService.getById(req.params.id);
       return res.status(200).json(serialize(result));
     } catch (error) {
       return res.status(400).json({ description: error.path, name: error.message });
