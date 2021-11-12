@@ -2,7 +2,7 @@ const CarController = require('../app/controller/CarController');
 const createValidation = require('../app/validation/car/create');
 const patchValidation = require('../app/validation/car/patch');
 const idValidation = require('../app/validation/car/idValidation');
-const login = require('../app/middleware/auth');
+// const login = require('../app/middleware/auth');
 
 module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.post('/', createValidation, CarController.create);

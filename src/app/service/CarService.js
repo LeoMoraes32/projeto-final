@@ -27,11 +27,11 @@ class CarService {
     return result;
   }
 
-  async patchAcessory({ id, idAcessory }, { descricao }) {
-    const car = await CarRepository.listById(id);
+  async patchAcessory(id, idAcessory, payload) {
+    const car = await CarRepository.getById(id);
     if (!car) throw new IdNotFoundCar(id);
 
-    const result = await CarRepository.patchAcessory(idAcessory, descricao);
+    const result = await CarRepository.patchAcessory(id, idAcessory, payload);
     return result;
   }
 

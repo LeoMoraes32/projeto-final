@@ -3,12 +3,16 @@ const RentalSchema = require('../schema/RentalSchema');
 
 class RentalRepository {
   async create(payload) {
-    let item;
-    for (item = 0; item < payload.endereco.length; item++) {
-      const busca = axios
+    for (let item = 0; item < payload.endereco.length; item++) {
+      console.log(payload.endereco[item].cep);
+      const search = await axios
         .get(`https://viacep.com.br/ws/${payload.endereco[item].cep}/json`)
-        .then((response) => response.data);
-      const { logradouro, complemento, bairro, localidade, uf } = busca;
+        .then((response) => {
+          console.log(response.data);
+          return response.data; 
+        } )
+        .catch((error) => console.log(error));
+      const { logradouro, complemento, bairro, localidade, uf } = search;
       payload.endereco[item].logradouro = logradouro;
       payload.endereco[item].complemento = complemento;
       payload.endereco[item].bairro = bairro;

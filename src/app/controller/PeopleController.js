@@ -17,7 +17,7 @@ class PeopleController {
       const result = await PeopleService.list(req.query);
       return res.status(200).json(paginateSerialize(result));
     } catch (error) {
-      return res.status(400).json({ description: error.path, name: error.message });
+      return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }
 
@@ -42,7 +42,7 @@ class PeopleController {
   async delete(req, res) {
     try {
       await PeopleService.deleteById(req.params.id);
-      return res.status(202).json({});
+      return res.status(204).json({});
     } catch (error) {
       return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }

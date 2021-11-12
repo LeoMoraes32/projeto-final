@@ -41,11 +41,73 @@
                             }
                         }
                     }
+                },
+            "responses":{
+                "409": {
+                    "description": "Conflict"
+                },
+                "400": {
+                    "description": "Bad Request"
+                },
+                "201": {
+                    "description": "Created",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/people"
+                                
+                            }
+                        }
+                    }
                 }
-
             }
         }
     },
+    "/people/": {
+        "get":{
+            "description":"Essa rota será responsável por pegar as pessoas",
+            "summary":"Trazer pessoas",
+            "tags":["people"],
+            "parameters": [
+                {
+                    "name":"nome",
+                    "in": "query",
+                    "description": "Nome da pessoa para busca",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name":"cpf",
+                    "in":"query",
+                    "description": "Cpf da pessoa para busca",
+                    "schema":{
+                        "type": "string"
+                    }
+                },
+                {
+                    "name":"data_nascimento",
+                    "in":"query",
+                    "description": "Data de nascimento para busca",
+                    "schema":{
+                        "type": "string"
+                    }
+                },
+                {
+                    "name":"email",
+                    "in":"query",
+                    "description":"Email para busca",
+                    "schema":{
+                        "type": "string"
+                    }
+                }
+            ]
+
+        }
+    }
+
+},
     "components": {
         "schemas": {
             "people":{
@@ -73,5 +135,4 @@
             }
         }
     }
-
 }

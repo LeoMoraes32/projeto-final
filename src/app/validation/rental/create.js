@@ -3,7 +3,7 @@ const Joi = require('joi');
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      nome: Joi.string().min(3).replace(' ', '').required(),
+      nome: Joi.string().min(3).trim().required(),
       cnpj: Joi.string()
         .min(14)
         .max(18)
@@ -28,14 +28,6 @@ module.exports = async (req, res, next) => {
     if (error) throw error;
     return next();
   } catch (error) {
-    const erros = [];
-    const { details } = error;
-    details.forEach((t) => {
-      erros.push({
-        description: t.path[0],
-        name: t.message
-      });
-    });
-    return res.status(400).json(erros);
+    return res.status(400).json({message: error.message});
   }
 };
