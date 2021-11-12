@@ -1,0 +1,211 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API locadora de carros - Compassolisa",
+    "description": "API que cria os registros de carros, usuários e a autenticação.",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email": "leonardo32moraes@hotmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "API de test"
+    }
+  ],
+  "paths": {
+    "/people": {
+      "post": {
+        "summary": "Cadastrar uma nova pessoa",
+        "description": "Essa rota será responsável por cadastrar uma pessoa",
+        "tags": [
+          "people"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/people"
+              },
+              "examples": {
+                "people": {
+                  "value": {
+                    "nome": "Leonardo Moraes",
+                    "cpf": "034.798.320-00",
+                    "data_nascimento": "15/12/1994",
+                    "email": "leonardo32moraes@hotmail.com",
+                    "senha": "123456789",
+                    "habilitado": "sim"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/people"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/people/": {
+      "get": {
+        "description": "Essa rota será responsável por pegar as pessoas",
+        "summary": "Trazer pessoas",
+        "tags": [
+          "people"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "description": "Nome da pessoa para busca",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "description": "Cpf da pessoa para busca",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_nascimento",
+            "in": "query",
+            "description": "Data de nascimento para busca",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Email para busca",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/people"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/people/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "description": "Essa rota será responsável por pegar as pessoas pelo id",
+        "summary": "Buscar pessoas pelo id",
+        "tags": [
+          "people"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/people"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/people/{id}":{
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "delete": {
+        "description": "Essa rota será responsável por deletar as pessoas pelo id",
+        "summary": "Deletar pessoas pelo id",
+        "tags": [
+          "people"
+        ],
+        "responses":{
+          "400": {
+            "description": "Bad Request"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "people": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "data_nascimento": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "senha": {
+            "type": "string"
+          },
+          "habilitado": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,138 +1,1423 @@
 {
-    "openapi":"3.0.0",
-    "info":{
-        "title": "API locadora de carros - Compassolisa",
-        "description": "API que cria os registros de carros, usuários e a autenticação.",
-        "termsOfService": "http://localhost:3000/terms",
-        "contact": {
-            "email": "leonardo32moraes@hotmail.com"
-        },
-        "version": "1.0.0"
-    },
-    "servers": [
-        {
-            "url": "http://localhost:3000/api/v1",
-            "description": "API de test"
-        }
-    ],
-    "paths": {
-        "/people":{
-            "post":{
-                "summary": "Cadastrar uma nova pessoa",
-                "description": "Essa rota será responsável por cadastrar uma pessoa",
-                "tags":["people"],
-                "requestBody":{
-                    "content": {
-                        "application/json":{
-                            "schema": {
-                                "$ref": "#/components/schemas/people"
-                            },
-                            "examples": {
-                                "people": {
-                                    "value": {
-                                        "nome": "Leonardo Moraes",
-                                        "cpf": "034.798.320-00",
-                                        "data_nascimento": "15/12/1994",
-                                        "email": "leonardo32moraes@hotmail.com",
-                                        "senha": "123456789",
-                                        "habilitado": "sim"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-            "responses":{
-                "409": {
-                    "description": "Conflict"
-                },
-                "400": {
-                    "description": "Bad Request"
-                },
-                "201": {
-                    "description": "Created",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "$ref": "#/components/schemas/people"
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/people/": {
-        "get":{
-            "description":"Essa rota será responsável por pegar as pessoas",
-            "summary":"Trazer pessoas",
-            "tags":["people"],
-            "parameters": [
-                {
-                    "name":"nome",
-                    "in": "query",
-                    "description": "Nome da pessoa para busca",
-                    "schema": {
-                        "type": "string"
-                    }
-                },
-                {
-                    "name":"cpf",
-                    "in":"query",
-                    "description": "Cpf da pessoa para busca",
-                    "schema":{
-                        "type": "string"
-                    }
-                },
-                {
-                    "name":"data_nascimento",
-                    "in":"query",
-                    "description": "Data de nascimento para busca",
-                    "schema":{
-                        "type": "string"
-                    }
-                },
-                {
-                    "name":"email",
-                    "in":"query",
-                    "description":"Email para busca",
-                    "schema":{
-                        "type": "string"
-                    }
-                }
-            ]
-
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API locadora de carros - Compassolisa",
+    "description": "API que cria os registros de carros, usuários e a autenticação.",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email": "leonardo32moraes@hotmail.com"
     }
-
-},
-    "components": {
-        "schemas": {
-            "people":{
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "authenticate",
+      "description": "Autenticação"
+    },
+    {
+      "name": "peoples",
+      "description": "Rota de pessoas"
+    },
+    {
+      "name": "cars",
+      "description": "Rota de carros"
+    },
+    {
+      "name": "rentals",
+      "description": "Rota dos rentals"
+    }
+  ],
+  "paths": {
+    "/authenticate/": {
+      "post": {
+        "tags": [
+          "authenticate"
+        ],
+        "summary": "Autenticação de email e senha",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
                 "type": "object",
                 "properties": {
-                    "nome": {
-                        "type": "string"
-                    },
-                    "cpf": {
-                        "type": "string"
-                    },
-                    "data_nascimento": {
-                        "type": "string"
+                  "email": {
+                    "type": "string",
+                    "example": "leonardo32moraes@hotmail.com"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": 123456789
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
                     },
                     "email": {
-                        "type": "string"
-                    },
-                    "senha": {
-                        "type": "string"
+                      "type": "string"
                     },
                     "habilitado": {
-                        "type": "string"
+                      "type": "string"
                     }
+                  }
                 }
+              }
             }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
+      }
+    },
+    "/car/": {
+      "post": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Posta carro",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "modelo": {
+                    "type": "string",
+                    "example": "Lancer"
+                  },
+                  "cor": {
+                    "type": "string",
+                    "example": "preto"
+                  },
+                  "ano": {
+                    "type": "number",
+                    "example": 2016
+                  },
+                  "acessorios": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "descricao": {
+                          "type": "string",
+                          "example": "Ar Condicionado"
+                        }
+                      }
+                    }
+                  },
+                  "quantidadePassageiros": {
+                    "type": "number",
+                    "example": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "modelo": {
+                      "type": "string"
+                    },
+                    "cor": {
+                      "type": "string"
+                    },
+                    "ano": {
+                      "type": "number"
+                    },
+                    "acessorios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "descricao": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "quantidadePassageiros": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Lista carros por parâmetro",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "query",
+            "description": "carro modelo",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cor",
+            "in": "query",
+            "description": "carro cor",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ano",
+            "in": "query",
+            "description": "carro ano",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "descricao",
+            "in": "query",
+            "description": "carro acessório",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quantidadePassageiros",
+            "in": "query",
+            "description": "passageiros",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "total",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offsets",
+            "in": "query",
+            "description": "offsets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "veiculos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "number"
+                          },
+                          "modelo": {
+                            "type": "string"
+                          },
+                          "cor": {
+                            "type": "string"
+                          },
+                          "ano": {
+                            "type": "number"
+                          },
+                          "acessorios": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "descricao": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "quantidadePassageiros": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/car/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Listar por ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "modelo": {
+                      "type": "string"
+                    },
+                    "cor": {
+                      "type": "string"
+                    },
+                    "ano": {
+                      "type": "number"
+                    },
+                    "acessorios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "descricao": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "quantidadePassageiros": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Remover por ID",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Update por ID",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "modelo": {
+                    "type": "string",
+                    "example": "Mazda Rx8"
+                  },
+                  "cor": {
+                    "type": "string",
+                    "example": "branco"
+                  },
+                  "ano": {
+                    "type": "number",
+                    "example": 2021
+                  },
+                  "acessorios": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "descricao": {
+                          "type": "string",
+                          "example": "Ar Condicionado"
+                        }
+                      }
+                    }
+                  },
+                  "quantidadePassageiros": {
+                    "type": "number",
+                    "example": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "modelo": {
+                      "type": "string"
+                    },
+                    "cor": {
+                      "type": "string"
+                    },
+                    "ano": {
+                      "type": "number"
+                    },
+                    "acessorios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "descricao": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "quantidadePassageiros": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/car/{id}/acessorios/{idAcessory}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "idAcessory",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "patch": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Patch por ID",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string",
+                    "example": "Ar Condicionado"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "modelo": {
+                      "type": "string"
+                    },
+                    "cor": {
+                      "type": "string"
+                    },
+                    "ano": {
+                      "type": "number"
+                    },
+                    "acessorios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "descricao": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "quantidadePassageiros": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/people/": {
+      "post": {
+        "tags": [
+          "peoples"
+        ],
+        "summary": "Posta nova Pessoa",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Leonardo Moraes"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "example": "034.798.320-08"
+                  },
+                  "data_nascimento": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "15/12/2000"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "leonardo32moraes@hotmail.com"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": 123456789
+                  },
+                  "habilitado": {
+                    "type": "string",
+                    "example": "sim",
+                    "enum": [
+                      "sim",
+                      "não"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "data_nascimento": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "habilitado": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "peoples"
+        ],
+        "summary": "Listar",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "description": "People nome",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "description": "People CPF",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_nascimento",
+            "in": "query",
+            "description": "People data de nascimento",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "People email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "habilitado",
+            "in": "query",
+            "description": "Habilitado",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "total",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offsets",
+            "in": "query",
+            "description": "offsets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "veiculos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "number"
+                          },
+                          "nome": {
+                            "type": "string"
+                          },
+                          "cpf": {
+                            "type": "string"
+                          },
+                          "data_nascimento": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "habilitado": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/people/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "peoples"
+        ],
+        "summary": "Listar pelo ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "data_nascimento": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "habilitado": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "peoples"
+        ],
+        "summary": "Remover pelo ID",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "peoples"
+        ],
+        "summary": "Update por ID",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Leonardo Moraes"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "example": "034.798.320-08"
+                  },
+                  "data_nascimento": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "15/12/2000"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "leonardo32moraes@hotmail.com"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": 123456789
+                  },
+                  "habilitado": {
+                    "type": "string",
+                    "example": "sim",
+                    "enum": [
+                      "sim",
+                      "não"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "data_nascimento": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "habilitado": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/rental/": {
+      "post": {
+        "tags": [
+          "rentals"
+        ],
+        "summary": "Posta rental",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Localiza Rent a Car"
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "example": "16.670.085/0001-55"
+                  },
+                  "atividades": {
+                    "type": "string",
+                    "example": "Aluguel de Carros E Gestão de Frotas"
+                  },
+                  "endereco": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "cep": {
+                          "type": "string",
+                          "example": "96203-230"
+                        },
+                        "number": {
+                          "type": "string",
+                          "example": 25
+                        },
+                        "isFilial": {
+                          "type": "boolean",
+                          "example": false
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "atividades": {
+                      "type": "string"
+                    },
+                    "endereco": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cep": {
+                            "type": "string"
+                          },
+                          "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
+                            "type": "string"
+                          },
+                          "bairro": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "number"
+                          },
+                          "localidade": {
+                            "type": "string"
+                          },
+                          "uf": {
+                            "type": "string",
+                            "enum": [
+                              "AC",
+                              "AL",
+                              "AP",
+                              "AM",
+                              "BA",
+                              "CE",
+                              "DF",
+                              "ES",
+                              "GO",
+                              "MA",
+                              "MT",
+                              "MS",
+                              "MG",
+                              "PA",
+                              "PB",
+                              "PR",
+                              "PE",
+                              "PI",
+                              "RJ",
+                              "RN",
+                              "RS",
+                              "RO",
+                              "RR",
+                              "SC",
+                              "SP",
+                              "SE",
+                              "TO"
+                            ]
+                          },
+                          "isFilial": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "rentals"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "description": "Listar por parâmetro",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cnpj",
+            "in": "query",
+            "description": "CNPJ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "atividades",
+            "in": "query",
+            "description": "Atividades",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cep",
+            "in": "query",
+            "description": "CEP",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "logradouro",
+            "in": "query",
+            "description": "Logradouro",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isFilial",
+            "in": "query",
+            "description": "isFiliarl: true ou false",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "total",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offsets",
+            "in": "query",
+            "description": "offsets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Listar todos rentals",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "atividades": {
+                      "type": "string"
+                    },
+                    "endereco": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cep": {
+                            "type": "string"
+                          },
+                          "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
+                            "type": "string"
+                          },
+                          "bairro": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "number"
+                          },
+                          "localidade": {
+                            "type": "string"
+                          },
+                          "uf": {
+                            "type": "string"
+                          },
+                          "isFilial": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/rental/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "rentals"
+        ],
+        "summary": "Listar por ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "atividades": {
+                      "type": "string"
+                    },
+                    "endereco": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cep": {
+                            "type": "string"
+                          },
+                          "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
+                            "type": "string"
+                          },
+                          "bairro": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "number"
+                          },
+                          "localidade": {
+                            "type": "string"
+                          },
+                          "uf": {
+                            "type": "string"
+                          },
+                          "isFilial": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "rentals"
+        ],
+        "summary": "Remover por ID",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "rentals"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Localiza Rent a Car"
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "example": "16.670.085/0001-55"
+                  },
+                  "atividades": {
+                    "type": "string",
+                    "example": "Aluguel de Carros E Gestão de Frotas"
+                  },
+                  "endereco": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "cep": {
+                          "type": "string",
+                          "example": "96203-230"
+                        },
+                        "number": {
+                          "type": "string",
+                          "example": 25
+                        },
+                        "isFilial": {
+                          "type": "boolean",
+                          "example": false
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "atividades": {
+                      "type": "string"
+                    },
+                    "endereco": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cep": {
+                            "type": "string"
+                          },
+                          "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
+                            "type": "string"
+                          },
+                          "bairro": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "number"
+                          },
+                          "localidade": {
+                            "type": "string"
+                          },
+                          "uf": {
+                            "type": "string"
+                          },
+                          "isFilial": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
+  }
 }
