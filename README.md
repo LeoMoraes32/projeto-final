@@ -9,6 +9,7 @@ Compass has entered a new branch of the market, compassolisa a follow-up to luxu
 
  - Cars CRUD;
  - People CRUD;
+ - Rentals CRUD
  - Simple pagination;
  - Filter by params;
  - Return Token.
@@ -38,6 +39,12 @@ then to start the server run
 ```bash
     npm run dev
 ```
+
+## Run the tests
+
+ - npm run test /integration/rental.test.js
+ - npm run test /integration/people.test.js
+ - npm run test /integration/car.test.js
 
 if you use docker use the extension of docker 
 ![Logo](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTsBvn9I2b74xUSSIeBV775s36ZqxkuEN6xA&usqp=CAU)
@@ -112,6 +119,39 @@ Click with the second button of the mouse on the docker-compose.yml arquive and 
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+
+#### Get all Rentals 
+
+```http
+  GET /api/v1/rental
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `params` | `string` | **Required**. Your API key |
+
+#### Get item by id
+
+```http
+  GET /api/v1/rental/${id}
+  POST /api/v1/rental - json
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### PUT, PATCH and DELETE item of Rentals
+
+```http
+    PUT /api/v1/rental/${id} 
+    PATCH /api/v1/rental/${id}
+    DELETE /api/v1/rental/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
 ## Contributing
 
