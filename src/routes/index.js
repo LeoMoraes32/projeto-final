@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const people = require('./people.router');
 const car = require('./car.router');
-const authenticate = require('./authenticate.router');
+const authenticate = require('./auth.router');
 const rental = require('./rental.router');
 
 module.exports = (server) => {

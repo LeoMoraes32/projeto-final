@@ -74,5 +74,21 @@ describe('Delete people by id', () => {
     });
 });
 
+describe('Cannot post people under 18', () => {
+  it('should not let people under 18 years be registered and it will return error 400', async () =>{
+    const people = {
+      nome: 'Leonardo',
+      cpf: '034.798.320-08',
+      data_nascimento: '15/12/2010',
+      email: 'leonardo32moraes@hotmail.com',
+      senha: '123456789',
+      habilitado: 'sim'
+    };
 
-
+    const response = await request(app).post('/api/v1/people/').send(people);
+    const { status } = response;
+    const { req } = response;
+    console.log(req);
+    expect(status).toBe(400);
+  });
+});

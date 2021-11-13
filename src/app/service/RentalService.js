@@ -17,6 +17,7 @@ class RentalService {
 
   async list(payload) {
     const result = await RentalRepository.list(payload);
+    if (!result) throw new Error();
     return result;
   }
 

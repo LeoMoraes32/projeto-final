@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PeopleSchema = new mongoose.Schema(
@@ -27,7 +27,6 @@ const PeopleSchema = new mongoose.Schema(
     senha: {
       type: String,
       required: true,
-      set: (value) => crypto.createHash('md5').update(value).digest('hex'),
       select: false
     },
     habilitado: {
@@ -40,6 +39,13 @@ const PeopleSchema = new mongoose.Schema(
     versionKey: false
   }
 );
+
+PeopleSchema.pre('save', async function encrypted(next) {
+  const hash = await bcrypt.hash(this.senha, 10);
+  this.senha = hash;
+
+  next();
+});
 
 PeopleSchema.plugin(mongoosePaginate);
 

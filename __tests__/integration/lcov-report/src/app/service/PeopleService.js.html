@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">36.84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/57</span>
+                <span class='fraction'>21/57</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/8</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">36.84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/57</span>
+                <span class='fraction'>21/57</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,31 +124,25 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -161,13 +155,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -180,32 +180,32 @@ const IdNotFound = require('../errors/peopleError/IdNotFound');
 const ValidCpf = require('../utils/ValidCpf');
 &nbsp;
 class PeopleService {
-  async create(payload) {
-    await ValidCpf.verifyCpf(payload.cpf);
-    payload.data_nascimento = moment(payload.data_nascimento, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    const age = moment().diff(payload.data_nascimento, 'years');
-    if (age &lt; 18) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+  async create<span class="fstat-no" title="function not covered" >(payload) {</span>
+<span class="cstat-no" title="statement not covered" >    await ValidCpf.verifyCpf(payload.cpf);</span>
+<span class="cstat-no" title="statement not covered" >    payload.data_nascimento = moment(payload.data_nascimento, 'DD/MM/YYYY').format('YYYY-MM-DD');</span>
+<span class="cstat-no" title="statement not covered" >    const age = moment().diff(payload.data_nascimento, 'years');</span>
+<span class="cstat-no" title="statement not covered" >    if (age &lt; 18) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new AgeUnderEighteen(payload.nome, age);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-&nbsp;
-    const cpf = await PeopleRepository.list({ cpf: payload.cpf });
-    if (cpf.docs.length) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      throw new UniqueCpf(cpf.docs.cpf);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const cpf = await PeopleRepository.list({ cpf: payload.cpf });</span>
+<span class="cstat-no" title="statement not covered" >    if (cpf.docs.length) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new UniqueCpf(cpf.docs[0].cpf);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-&nbsp;
-    const email = await PeopleRepository.list({ email: payload.email });
-    if (email.docs.length) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const email = await PeopleRepository.list({ email: payload.email });</span>
+<span class="cstat-no" title="statement not covered" >    if (email.docs.length) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new UniqueEmail(email.docs.email);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-    const result = await PeopleRepository.create(payload);
-    return result;
-  }
+<span class="cstat-no" title="statement not covered" >    const result = await PeopleRepository.create(payload);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  async list(payload) {
-    const result = await PeopleRepository.list(payload);
-    if (!result) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew Error();
-    return result;
-  }
+  async list<span class="fstat-no" title="function not covered" >(payload) {</span>
+<span class="cstat-no" title="statement not covered" >    const result = await PeopleRepository.list(payload);</span>
+<span class="cstat-no" title="statement not covered" >    if (!result) throw new Error();</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
   async getById<span class="fstat-no" title="function not covered" >(payload) {</span>
 <span class="cstat-no" title="statement not covered" >    const result = await PeopleRepository.getById(payload);</span>
@@ -220,11 +220,11 @@ class PeopleService {
 <span class="cstat-no" title="statement not covered" >    return result;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  async deleteById(payload) {
-    const result = await PeopleRepository.deleteById(payload);
-    if (!result) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew IdNotFound(payload);
-    return result;
-  }
+  async deleteById<span class="fstat-no" title="function not covered" >(payload) {</span>
+<span class="cstat-no" title="statement not covered" >    const result = await PeopleRepository.deleteById(payload);</span>
+<span class="cstat-no" title="statement not covered" >    if (!result) throw new IdNotFound(payload);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 }
 &nbsp;
 module.exports = new PeopleService();
@@ -235,7 +235,7 @@ module.exports = new PeopleService();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Nov 12 2021 15:08:32 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Nov 12 2021 21:39:01 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

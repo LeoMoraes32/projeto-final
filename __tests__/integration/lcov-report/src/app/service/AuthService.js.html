@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/app/validation/car/idValidation.js</title>
+    <title>Code coverage report for src/app/service/AuthService.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../../prettify.css" />
-    <link rel="stylesheet" href="../../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/app/validation/car</a> idValidation.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/app/service</a> AuthService.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10.71% </span>
+                <span class="strong">37.03% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/28</span>
+                <span class='fraction'>10/27</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10.71% </span>
+                <span class="strong">37.03% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/28</span>
+                <span class='fraction'>10/27</span>
             </div>
         
             
@@ -83,9 +83,11 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -105,43 +107,35 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Joi = require('joi');
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const authConfig = require('../config/auth.json');
+const PeopleRepository = require('../repository/PeopleRepository');
 &nbsp;
-module.exports = <span class="fstat-no" title="function not covered" >async (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    const schema = Joi.object({</span>
-<span class="cstat-no" title="statement not covered" >      id: Joi.string()</span>
-<span class="cstat-no" title="statement not covered" >        .min(24)</span>
-<span class="cstat-no" title="statement not covered" >        .max(24)</span>
-<span class="cstat-no" title="statement not covered" >        .pattern(/^[0-9a-fA-F]{24}$/)</span>
-<span class="cstat-no" title="statement not covered" >        .required()</span>
+class AuthService {
+  async authenticate<span class="fstat-no" title="function not covered" >(email, senha) {</span>
+<span class="cstat-no" title="statement not covered" >    const people = await PeopleRepository.findPeopleByEmail(email);</span>
+<span class="cstat-no" title="statement not covered" >    const { habilitado } = people;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (!people) throw Error('people not found.');</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    bcrypt.compare(senha, people.senha, (error) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (error) throw Error('Invalid password.');</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const { error } = await schema.validate(req.params, { abortEarly: false });</span>
+<span class="cstat-no" title="statement not covered" >    people.senha = undefined;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (error) throw error;</span>
-<span class="cstat-no" title="statement not covered" >    return next();</span>
-<span class="cstat-no" title="statement not covered" >  } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >    const erros = [];</span>
-<span class="cstat-no" title="statement not covered" >    const { details } = error;</span>
-<span class="cstat-no" title="statement not covered" >    details.forEach((t) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      erros.push({</span>
-<span class="cstat-no" title="statement not covered" >        description: t.path[0],</span>
-<span class="cstat-no" title="statement not covered" >        name: t.message</span>
-<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    const token = jwt.sign({ id: people.id }, authConfig.secret, {</span>
+<span class="cstat-no" title="statement not covered" >      expiresIn: 86400</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(400).json(erros);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return { email, habilitado, token };</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >};</span>
-&nbsp;</pre></td></tr></table></pre>
+}
+&nbsp;
+module.exports = new AuthService();</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
@@ -151,14 +145,14 @@ module.exports = <span class="fstat-no" title="function not covered" >async (req
                 at Fri Nov 12 2021 21:39:01 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
-        <script src="../../../../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../../sorter.js"></script>
-        <script src="../../../../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     

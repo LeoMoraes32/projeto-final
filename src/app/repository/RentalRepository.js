@@ -24,10 +24,11 @@ class RentalRepository {
   }
 
   async list(payload) {
-    return RentalSchema.paginate(payload, {
-      page: payload.page || 1,
-      limit: 100
-    });
+    const { page = 1, limit = 100, ...query } = payload;
+    return RentalSchema.paginate(
+      { ...query },
+      { limit: Number(limit), page: Number(page), skip: (Number(page) - 1) * Number(limit) }
+    );
   }
 
   async getById(payload) {

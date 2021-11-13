@@ -31,5 +31,9 @@ class PeopleRepository {
   async findOne({ email, senha }) {
     return PeopleSchema.findOne({ email, senha });
   }
+
+  async findPeopleByEmail(email) {
+    return PeopleSchema.findOne({ email });
+  }
 }
 module.exports = new PeopleRepository();

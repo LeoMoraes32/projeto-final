@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.28% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/35</span>
+                <span class='fraction'>18/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.28% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>26/35</span>
+                <span class='fraction'>18/39</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,20 +92,24 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -119,8 +123,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -130,17 +138,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const PeopleSchema = require('../schema/PeopleSchema');
 &nbsp;
 class PeopleRepository {
-  async create(payload) {
-    return PeopleSchema.create(payload);
-  }
+  async create<span class="fstat-no" title="function not covered" >(payload) {</span>
+<span class="cstat-no" title="statement not covered" >    return PeopleSchema.create(payload);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  async list(payload) {
-    const { page = 1, limit = 100, ...query } = payload;
-    return PeopleSchema.paginate(
-      { ...query },
-      { limit: Number(limit), page: Number(page), skip: (Number(page) - 1) * Number(limit) }
-    );
-  }
+  async list<span class="fstat-no" title="function not covered" >(payload) {</span>
+<span class="cstat-no" title="statement not covered" >    const { page = 1, limit = 100, ...query } = payload;</span>
+<span class="cstat-no" title="statement not covered" >    return PeopleSchema.paginate(</span>
+<span class="cstat-no" title="statement not covered" >      { ...query },</span>
+<span class="cstat-no" title="statement not covered" >      { limit: Number(limit), page: Number(page), skip: (Number(page) - 1) * Number(limit) }</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
   async getById<span class="fstat-no" title="function not covered" >(payload) {</span>
 <span class="cstat-no" title="statement not covered" >    return PeopleSchema.findById(payload);</span>
@@ -153,12 +161,16 @@ class PeopleRepository {
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  async deleteById(payload) {
-    return PeopleSchema.deleteOne({ _id: payload });
-  }
+  async deleteById<span class="fstat-no" title="function not covered" >(payload) {</span>
+<span class="cstat-no" title="statement not covered" >    return PeopleSchema.deleteOne({ _id: payload });</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
   async findOne<span class="fstat-no" title="function not covered" >({ email, senha }) {</span>
 <span class="cstat-no" title="statement not covered" >    return PeopleSchema.findOne({ email, senha });</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
+  async findPeopleByEmail<span class="fstat-no" title="function not covered" >(email) {</span>
+<span class="cstat-no" title="statement not covered" >    return PeopleSchema.findOne({ email });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 }
 module.exports = new PeopleRepository();
@@ -169,7 +181,7 @@ module.exports = new PeopleRepository();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Nov 12 2021 15:08:32 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Nov 12 2021 21:39:01 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
