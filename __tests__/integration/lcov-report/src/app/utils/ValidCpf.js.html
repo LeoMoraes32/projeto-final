@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20.68% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/29</span>
+                <span class='fraction'>29/29</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">37.5% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20.68% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -90,58 +90,58 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const CpfInvalid = require('../errors/peopleError/CpfInvalid');
 &nbsp;
 class ValidCpf {
-<span class="fstat-no" title="function not covered" >  verifyCpf(cpf) {</span>
-<span class="cstat-no" title="statement not covered" >    const formatedCpf = cpf.replace('.', '').replace('.', '').replace('-', '');</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    let sum;</span>
-<span class="cstat-no" title="statement not covered" >    let rest;</span>
-<span class="cstat-no" title="statement not covered" >    sum = 0;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (formatedCpf === '00000000000') throw new CpfInvalid(cpf);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    for (let item = 1; item &lt;= 9; item++) sum += parseInt(formatedCpf.substring(item - 1, item), 10) * (11 - item);</span>
-<span class="cstat-no" title="statement not covered" >    rest = (sum * 10) % 11;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (rest === 10 || rest === 11) rest = 0;</span>
-<span class="cstat-no" title="statement not covered" >    if (rest !== parseInt(formatedCpf.substring(9, 10), 10)) throw new CpfInvalid(cpf);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    sum = 0;</span>
-<span class="cstat-no" title="statement not covered" >    for (let item = 1; item &lt;= 10; item++) {</span>
-<span class="cstat-no" title="statement not covered" >      sum += parseInt(formatedCpf.substring(item - 1, item), 10) * (12 - item);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    rest = (sum * 10) % 11;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (rest === 10 || rest === 11) rest = 0;</span>
-<span class="cstat-no" title="statement not covered" >    if (rest !== parseInt(formatedCpf.substring(10, 11), 10)) throw new CpfInvalid(formatedCpf);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  verifyCpf(cpf) {
+    const formatedCpf = cpf.replace('.', '').replace('.', '').replace('-', '');
+&nbsp;
+    let sum;
+    let rest;
+    sum = 0;
+&nbsp;
+    if (formatedCpf === '00000000000') <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew CpfInvalid(cpf);
+&nbsp;
+    for (let item = 1; item &lt;= 9; item++) sum += parseInt(formatedCpf.substring(item - 1, item), 10) * (11 - item);
+    rest = (sum * 10) % 11;
+&nbsp;
+    if (rest === 10 || rest === 11) <span class="branch-0 cbranch-no" title="branch not covered" >rest </span>= 0;
+    if (rest !== parseInt(formatedCpf.substring(9, 10), 10)) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew CpfInvalid(cpf);
+&nbsp;
+    sum = 0;
+    for (let item = 1; item &lt;= 10; item++) {
+      sum += parseInt(formatedCpf.substring(item - 1, item), 10) * (12 - item);
+    }
+    rest = (sum * 10) % 11;
+&nbsp;
+    if (rest === 10 || rest === 11) <span class="branch-0 cbranch-no" title="branch not covered" >rest </span>= 0;
+    if (rest !== parseInt(formatedCpf.substring(10, 11), 10)) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew CpfInvalid(formatedCpf);
+  }
 }
 module.exports = new ValidCpf();
 &nbsp;</pre></td></tr></table></pre>
@@ -151,7 +151,7 @@ module.exports = new ValidCpf();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Nov 12 2021 21:39:01 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Nov 12 2021 22:04:00 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
