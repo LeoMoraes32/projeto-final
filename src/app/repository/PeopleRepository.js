@@ -2,8 +2,8 @@ const PeopleSchema = require('../schema/PeopleSchema');
 const Repository = require('./Repository');
 
 class PeopleRepository extends Repository {
-  constructor(PeopleRepository){
-    super(PeopleRepository);
+  constructor(){
+    super(PeopleSchema);
   }
   async findOne({ email, senha }) {
     return PeopleSchema.findOne({ email, senha });

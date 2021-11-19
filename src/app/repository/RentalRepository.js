@@ -3,6 +3,10 @@ const RentalSchema = require('../schema/RentalSchema');
 const Repository = require('./Repository'); 
 
 class RentalRepository extends Repository{
+  constructor(){
+    super(RentalSchema);
+  }
+
   async create(payload) {
     for (let item = 0; item < payload.endereco.length; item++) {
       const search = await axios.get(`https://viacep.com.br/ws/${payload.endereco[item].cep}/json`);
@@ -23,4 +27,4 @@ class RentalRepository extends Repository{
     return RentalSchema.findByIdAndDelete(payload);
   }
 }
-module.exports = new RentalRepository(RentalSchema);
+module.exports = new RentalRepository();

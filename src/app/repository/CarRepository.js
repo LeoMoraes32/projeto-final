@@ -3,6 +3,10 @@ const Repository = require('./Repository');
 
 class CarRepository extends Repository{
 
+  constructor(){
+    super(CarSchema);
+  }
+
   async updateById(id, body) {
     return CarSchema.findByIdAndUpdate(id, body, {
       new: true,
@@ -25,4 +29,4 @@ class CarRepository extends Repository{
 
 
 }
-module.exports = new CarRepository(CarSchema);
+module.exports = new CarRepository();
