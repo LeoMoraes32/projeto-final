@@ -1,7 +1,7 @@
 const AuthService = require('../service/AuthService');
 
 class AuthController {
-  async authenticate(req, res){
+  async authenticate(req, res) {
     try {
       const { email, senha } = await req.body;
       const result = await AuthService.authenticate(email, senha);

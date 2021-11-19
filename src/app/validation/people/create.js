@@ -1,4 +1,5 @@
 const Joi = require('joi').extend(require('@joi/date'));
+const { cpf } = require('../../utils/regex');
 
 module.exports = async (req, res, next) => {
   try {
@@ -7,7 +8,7 @@ module.exports = async (req, res, next) => {
       cpf: Joi.string()
         .min(11)
         .max(14)
-        .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)
+        .regex(cpf)
         .required(),
       data_nascimento: Joi.date().format('DD/MM/YYYY').required(),
       email: Joi.string().email().lowercase().required(),
@@ -18,14 +19,11 @@ module.exports = async (req, res, next) => {
     if (error) throw error;
     return next();
   } catch (error) {
-    const erros = [];
-    const { details } = error;
-    details.forEach((t) => {
-      erros.push({
-        description: t.path[0],
-        name: t.message
-      });
-    });
-    return res.status(400).json(erros);
+    return res.status(400).json(
+      error.details.map((detail) => ({
+        description: detail.message,
+        name: detail.path.join('.')
+      }))
+    );
   }
 };

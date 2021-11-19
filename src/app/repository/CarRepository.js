@@ -1,21 +1,7 @@
 const CarSchema = require('../schema/CarSchema');
+const Repository = require('./Repository');
 
-class CarRepository {
-  async create(payload) {
-    return CarSchema.create(payload);
-  }
-
-  async list(payload) {
-    const { page = 1, limit = 100, ...query } = payload;
-    return CarSchema.paginate(
-      { ...query },
-      { limit: Number(limit), page: Number(page), skip: (Number(page) - 1) * Number(limit) }
-    );
-  }
-
-  async getById(payload) {
-    return CarSchema.findById(payload);
-  }
+class CarRepository extends Repository{
 
   async updateById(id, body) {
     return CarSchema.findByIdAndUpdate(id, body, {
@@ -37,8 +23,6 @@ class CarRepository {
     return result;
   }
 
-  async deleteById(payload) {
-    return CarSchema.findByIdAndDelete(payload);
-  }
+
 }
-module.exports = new CarRepository();
+module.exports = new CarRepository(CarSchema);

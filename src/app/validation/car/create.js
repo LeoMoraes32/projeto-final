@@ -17,14 +17,11 @@ module.exports = async (req, res, next) => {
     if (error) throw error;
     return next();
   } catch (error) {
-    const erros = [];
-    const { details } = error;
-    details.forEach((t) => {
-      erros.push({
-        description: t.path[0],
-        name: t.message
-      });
-    });
-    return res.status(400).json(erros);
+    return res.status(400).json(
+      error.details.map((detail) => ({
+        description: detail.message,
+        name: detail.path.join('.')
+      }))
+    );
   }
 };

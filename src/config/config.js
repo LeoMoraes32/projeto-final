@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 
 dotenv.config({
-    path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 });
 
 module.exports = {
@@ -10,6 +10,6 @@ module.exports = {
     port: process.env.DB_POST,
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
-    collection: process.env.DB_COLLECTION    
+    collection: process.env.DB_COLLECTION
   }
 };

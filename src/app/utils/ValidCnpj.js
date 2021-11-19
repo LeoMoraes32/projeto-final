@@ -32,7 +32,7 @@ class ValidCnpj {
       if (pos < 2) pos = 9;
     }
     let resultado = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-    const digitsOne = parseInt(digits.chartAt(0), 10); 
+    const digitsOne = parseInt(digits.chartAt(0), 10);
     if (resultado !== digitsOne) throw new CnpjInvalid(cnpj);
 
     size += 1;

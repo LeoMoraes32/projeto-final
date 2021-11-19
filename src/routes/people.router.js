@@ -1,7 +1,7 @@
 const PeopleController = require('../app/controller/PeopleController');
 const createValidation = require('../app/validation/people/create');
 const patchValidation = require('../app/validation/people/patch');
-const idValidation = require('../app/validation/people/idValidation');
+const idValidation = require('../app/validation/idValidation');
 
 module.exports = (server, routes, prefix = '/api/v1/people') => {
   routes.post('/', createValidation, PeopleController.create);

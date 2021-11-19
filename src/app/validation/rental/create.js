@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { cnpj, cep } = require('../../utils/regex');
 
 module.exports = async (req, res, next) => {
   try {
@@ -7,7 +8,7 @@ module.exports = async (req, res, next) => {
       cnpj: Joi.string()
         .min(14)
         .max(18)
-        .regex(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/)
+        .regex(cnpj)
         .required(),
       atividades: Joi.string().trim().min(3).required(),
       endereco: Joi.array()
@@ -15,7 +16,7 @@ module.exports = async (req, res, next) => {
         .min(1)
         .items({
           cep: Joi.string()
-            .regex(/^\d{5}-\d{3}$/)
+            .regex(cep)
             .trim()
             .required(),
           complemento: Joi.string().trim(),
@@ -28,6 +29,11 @@ module.exports = async (req, res, next) => {
     if (error) throw error;
     return next();
   } catch (error) {
-    return res.status(400).json({message: error.message});
+    return res.status(400).json(
+      error.details.map((detail) => ({
+        description: detail.message,
+        name: detail.path.join('.')
+      }))
+    );
   }
 };

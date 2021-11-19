@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../../src/app');
-const Rental = require('../../src/app/schema/RentalSchema');
+const app = require('../../../src/app');
+const Rental = require('../../../src/app/schema/RentalSchema');
 
 beforeAll(async () => {
   await Rental.deleteMany();

@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../../src/app');
-const Car = require('../../src/app/schema/CarSchema');
+const app = require('../../../src/app');
+const Car = require('../../../src/app/schema/CarSchema');
 
 beforeAll(async () => {
   await Car.deleteMany();
@@ -16,10 +16,12 @@ describe('Create a new car', () => {
       modelo: 'BMW M2',
       cor: 'Azul',
       ano: '2005',
-      acessorios: [{
-          descricao:'ABS'
-      }],
-      quantidadePassageiros: 5,
+      acessorios: [
+        {
+          descricao: 'ABS'
+        }
+      ],
+      quantidadePassageiros: 5
     };
     const response = await request(app).post('/api/v1/car').send(car);
     const { body } = response;
@@ -32,14 +34,16 @@ describe('Create a new car', () => {
 describe('Get all cars', () => {
   it('should get all car and return status 200', async () => {
     const car = {
-        modelo: 'BMW M2',
-        cor: 'Azul',
-        ano: '2005',
-        acessorios: [{
-            descricao:'ABS'
-        }],
-        quantidadePassageiros: 5,
-      };
+      modelo: 'BMW M2',
+      cor: 'Azul',
+      ano: '2005',
+      acessorios: [
+        {
+          descricao: 'ABS'
+        }
+      ],
+      quantidadePassageiros: 5
+    };
 
     await request(app).post('/api/v1/car').send(car);
     const response = await request(app).get('/api/v1/car/');
@@ -58,24 +62,24 @@ describe('Get all cars', () => {
 });
 
 describe('Delete car by id', () => {
-    it('should delete car by Id', async () => {
-        const car = {
-            modelo: 'BMW M2',
-            cor: 'Azul',
-            ano: '2005',
-            acessorios: [{
-                descricao:'ABS'
-            }],
-            quantidadePassageiros: 5,
-          };
-      const { text } = await request(app).post('/api/v1/car/').send(car);
-      
-      const { _id } = JSON.parse(text);
-      
-      const response = await request(app).delete(`/api/v1/car/${_id.toString()}`);
-      const { status } = response;
-      expect(status).toBe(204);
-    });
+  it('should delete car by Id', async () => {
+    const car = {
+      modelo: 'BMW M2',
+      cor: 'Azul',
+      ano: '2005',
+      acessorios: [
+        {
+          descricao: 'ABS'
+        }
+      ],
+      quantidadePassageiros: 5
+    };
+    const { text } = await request(app).post('/api/v1/car/').send(car);
+
+    const { _id } = JSON.parse(text);
+
+    const response = await request(app).delete(`/api/v1/car/${_id.toString()}`);
+    const { status } = response;
+    expect(status).toBe(204);
   });
-
-
+});

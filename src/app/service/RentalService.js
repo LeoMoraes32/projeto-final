@@ -6,11 +6,11 @@ const IdNotFound = require('../errors/peopleError/IdNotFound');
 class RentalService {
   async create(payload) {
     // await ValidCnpj.verifyCnpj(payload.cnpj);
-    //const cnpj = await RentalRepository.list(payload.cnpj);
-    //console.log(cnpj);
-    //if (!cnpj.docs.length) {
+    // const cnpj = await RentalRepository.list(payload.cnpj);
+    // console.log(cnpj);
+    // if (!cnpj.docs.length) {
     //  throw new UniqueCnpj(cnpj.docs.cnpj);
-    //}
+    // }
     const result = await RentalRepository.create(payload);
     return result;
   }
