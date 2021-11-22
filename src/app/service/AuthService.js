@@ -6,13 +6,15 @@ const PeopleRepository = require('../repository/PeopleRepository');
 class AuthService {
   async authenticate(email, senha) {
     const people = await PeopleRepository.findPeopleByEmail(email);
+
+    if (!people) throw new Error('people not found.');
+
     const { habilitado } = people;
+    console.log(people.senha);
 
-    if (!people) throw Error('people not found.');
-
-    bcrypt.compare(senha, people.senha, (error) => {
-      if (error) throw Error('Invalid password.');
-    });
+    if (!bcrypt.compare(senha, people.senha)) {
+      throw new Error('Invalid password');
+    }
 
     people.senha = undefined;
 
