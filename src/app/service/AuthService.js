@@ -10,9 +10,8 @@ class AuthService {
     if (!people) throw new Error('people not found.');
 
     const { habilitado } = people;
-    console.log(people.senha);
 
-    if (!bcrypt.compare(senha, people.senha)) {
+    if (!(await bcrypt.compare(senha, people.senha))) {
       throw new Error('Invalid password');
     }
 
