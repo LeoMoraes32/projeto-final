@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('../../../src/app');
 const People = require('../../../src/app/schema/PeopleSchema');
+const { PeopleDataFaker } = require('../../support/datafaker');
+
+const people = PeopleDataFaker();
 
 const people = {
   nome: 'Leonardo',

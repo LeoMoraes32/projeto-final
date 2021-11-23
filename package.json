@@ -12,6 +12,7 @@
   "author": "Leonardo Moraes",
   "license": "ISC",
   "devDependencies": {
+    "chance": "^1.1.8",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-plugin": "^1.0.11",
