@@ -4,6 +4,7 @@ const car = require('./car.router');
 const authenticate = require('./auth.router');
 const rental = require('./rental.router');
 const docs = require('./docs.router');
+const reserve = require('./reserve.router');
 
 module.exports = (server) => {
   server.use((req, res, next) => {
@@ -12,6 +13,7 @@ module.exports = (server) => {
     authenticate(server, new Router());
     rental(server, new Router());
     docs(server, new Router());
+    reserve(server, new Router());
     next();
   });
 };
