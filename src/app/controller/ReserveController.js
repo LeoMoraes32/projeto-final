@@ -49,4 +49,4 @@ class ReserveController {
   }
 }
 
-module.exports = new RentalController();
+module.exports = new ReserveController();

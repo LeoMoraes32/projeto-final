@@ -1,5 +1,5 @@
 const ReserveSchema = require('../schema/ReserveSchema');
-const Repository = require('../')
+const Repository = require('./Repository');
 
 class ReserveRepository extends Repository{
   constructor(){
