@@ -16,7 +16,7 @@ class Repository {
   }
 
   async deleteById(payload) {
-    return this.schema.deleteOne({ _id: payload });
+    return this.schema.findByIdAndDelete(payload);
   }
 
   async getById(payload) {

@@ -35,14 +35,14 @@ class PeopleController {
       const result = await PeopleService.updateById(req.params.id, req.body);
       return res.status(200).json(serialize(result));
     } catch (error) {
-      return res.status(error.statusCode).json({ description: error.description, name: error.message });
+      return res.status(400).json({ description: error.description, name: error.message });
     }
   }
 
   async delete(req, res) {
     try {
       await PeopleService.deleteById(req.params.id);
-      return res.status(204).json({});
+      return res.status(204).end();
     } catch (error) {
       return res.status(error.statusCode).json({ description: error.description, name: error.message });
     }

@@ -22,7 +22,7 @@ class PeopleService {
 
     const email = await PeopleRepository.list({ email: payload.email });
     if (email.docs.length) {
-      throw new UniqueEmail(email.docs.email);
+      throw new UniqueEmail(email.docs[0].email);
     }
     const result = await PeopleRepository.create(payload);
     return result;
@@ -41,7 +41,7 @@ class PeopleService {
   }
 
   async updateById(payload, body) {
-    if (body.cpf) await ValidCpf.verifyCpf(payload.cpf);
+    if (body.cpf) await ValidCpf.verifyCpf(body.cpf);
     const result = await PeopleRepository.updateById(payload, body);
     if (!result) throw new IdNotFound(payload);
     return result;

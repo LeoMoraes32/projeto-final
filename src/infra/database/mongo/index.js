@@ -5,7 +5,7 @@ const atlas = 'mongodb+srv://leonardo32moraes:senhasenha123qwe@cluster0.rmlzg.mo
 const beforeHeroku = (`mongodb://${config.database.host}/${config.database.collection}`, {
   user: config.database.username,
   pass: config.database.password
-})
+});
 
 class Database {
   constructor() {
@@ -13,7 +13,10 @@ class Database {
   }
 
   connect() {
-    return mongoose.connect(process.env.MONGO_URL);
+    return mongoose.connect(`mongodb://${config.database.host}/${config.database.collection}`, {
+      user: config.database.username,
+      pass: config.database.password
+    });
   }
 
   disconnect() {
