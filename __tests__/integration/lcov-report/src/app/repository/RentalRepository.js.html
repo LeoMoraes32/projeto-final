@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/30</span>
+                <span class='fraction'>28/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/30</span>
+                <span class='fraction'>28/30</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,22 +93,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -126,19 +126,19 @@ class RentalRepository extends Repository{
     super(RentalSchema);
   }
 &nbsp;
-  async create<span class="fstat-no" title="function not covered" >(payload) {</span>
-<span class="cstat-no" title="statement not covered" >    for (let item = 0; item &lt; payload.endereco.length; item++) {</span>
-<span class="cstat-no" title="statement not covered" >      const search = await axios.get(`https://viacep.com.br/ws/${payload.endereco[item].cep}/json`);</span>
-<span class="cstat-no" title="statement not covered" >      const { logradouro, complemento, bairro, localidade, uf } = search.data;</span>
-<span class="cstat-no" title="statement not covered" >      payload.endereco[item].logradouro = logradouro;</span>
-<span class="cstat-no" title="statement not covered" >      payload.endereco[item].complemento = complemento;</span>
-<span class="cstat-no" title="statement not covered" >      payload.endereco[item].bairro = bairro;</span>
-<span class="cstat-no" title="statement not covered" >      payload.endereco[item].localidade = localidade;</span>
-<span class="cstat-no" title="statement not covered" >      payload.endereco[item].uf = uf;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return RentalSchema.create(payload);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  async create(payload) {
+    for (let item = 0; item &lt; payload.endereco.length; item++) {
+      const search = await axios.get(`https://viacep.com.br/ws/${payload.endereco[item].cep}/json`);
+      const { logradouro, complemento, bairro, localidade, uf } = search.data;
+      payload.endereco[item].logradouro = logradouro;
+      payload.endereco[item].complemento = complemento;
+      payload.endereco[item].bairro = bairro;
+      payload.endereco[item].localidade = localidade;
+      payload.endereco[item].uf = uf;
+    }
+&nbsp;
+    return RentalSchema.create(payload);
+  }
 &nbsp;
 &nbsp;
 &nbsp;
@@ -154,7 +154,7 @@ module.exports = new RentalRepository();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Nov 28 2021 11:29:36 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Nov 29 2021 04:36:24 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

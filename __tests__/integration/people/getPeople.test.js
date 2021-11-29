@@ -29,7 +29,7 @@ describe('Get all people', () => {
   });
 });
 describe('Get one people by id', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     peopleMock = PeopleDataFaker();
   });
   it('should return status code 200 and the people', async () => {
@@ -50,7 +50,7 @@ describe('Get one people by id', () => {
   });
 });
 describe('Do not get people by a wrong id', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     peopleMock = PeopleDataFaker();
   });
   it('should return status code 400', async () => {

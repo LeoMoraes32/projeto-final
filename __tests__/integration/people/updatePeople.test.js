@@ -8,7 +8,7 @@ let peopleNew = {};
 let peopleMock = {};
 
 describe('Update people', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     people = {
       nome: 'Leonardo Moraes',
       cpf: '035.409.060-70',
